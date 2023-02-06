@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    width: 100%;
+    background-color: teal;
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#app{
+    width: 90%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: .3rem;
+    box-shadow: rgba(0, 0, 0, .2) 3px 3px 5px, rgba(0, 0, 0, .2) -1px -1px 2px;
+}
+
+#note-form label{
+    display: none;
+}
+
+form input, form textarea{
+    margin: 5px 0;
+    border: none;
+    outline: none;
+}
+
+form input:focus, form textarea:focus{
+    border:none;
+    outline: none;
+    border-bottom: 1px solid teal;
+}
+
+form textarea{
+    height: 50px;
+}
+
+form .more{
+    display: flex;
+    flex-direction: column;
+}
+
+.more button{
+    width: -moz-fit-content;
+    width: fit-content;
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    opacity: 0.90;
+    border-radius: .3rem;
+    transition: all .3s;
+}
+
+.more button:hover{
+    opacity: 1;
+}
+
+#notes{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: .3rem;
+    box-shadow: rgba(0, 0, 0, .2) 3px 3px 5px, rgba(0, 0, 0, .2) -1px -1px 2px;
+}
+
+.note{
+    display: flex;
+    flex-direction: column;
+}
+
+.note h2{
+    margin-left: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.note-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.note-body p{
+    font-weight:100;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.controls{
+    display: flex;
+    flex-direction: column;
+}
+
+.controls i{
+    display: block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.controls i:hover{
+    color: rgb(212, 74, 24);
+}
+
+p{
+    padding: 5px;
+    min-height: 5em;
+    overflow: auto;
+}
+
+hr{
+    margin: 10px 0;
+    background-color: #e3e3e3;
+    outline: none;
+    border: none;
+    height: 1px;
+}
+
+em{
+    font-size: 0.6rem;
+    color: grey;
+}
+
+p:focus{
+    outline: none;
+    border-bottom: 1px solid teal;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    .note-body{
+        flex-direction: column;
+    }
+
+    .controls{
+        flex-direction: row;
+    }
+  }
