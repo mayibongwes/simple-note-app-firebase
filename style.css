@@ -18,6 +18,28 @@ body{
     width: 90%;
 }
 
+#user-account{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px
+}
+
+#user-account a{
+    background-color: crimson;
+    text-decoration: none;
+    padding: 5px 15px;
+    color: #eaeaea;
+    border: none;
+    border-radius: .3rem;
+    opacity: .8;
+    transition: all .3s;
+}
+
+#user-account a:hover{
+    opacity: 1;
+}
+
 form{
     display: flex;
     flex-direction: column;

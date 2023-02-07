@@ -12,18 +12,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div id="firebaseui-auth-container"></div>
     <div id="app">
+        <div id="user-account">
+            <h2>Hello, <span id="auth-username"></span></h2>
+            <a href="#" class="logout">logout</a>
+        </div>
+
         <div id="note-form">
             <form>
                 <label for="note-title">Note Title</label>
                 <input name="note-title" id="note-title" type="text" placeholder="Add Note" />
                 <div class="more">
                     <label for="note-text">Note Title</label>
-                    <textarea name="note-text" id="note-text" cols="30" rows="10" placeholder="Note Text" class="hide"></textarea>
+                    <textarea name="note-text" id="note-text" cols="30" rows="10" placeholder="Note Text"
+                        class="hide"></textarea>
                     <button type="Submit" id="submit" class="hide"><i class="fa-solid fa-plus"></i> Add Note</button>
                 </div>
 
@@ -33,6 +42,36 @@
         <div id="notes"></div>
 
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+    <script src="config.js"></script>
+    <script>
+
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const db = firebaseApp.firestore();
+        const auth = firebaseApp.auth();
+
+        // Add a new document in collection "cities"
+        db.collection("users").doc("signedinuser id").set({
+            notes: [
+                {
+                    id: "123jsd",
+                    title: "title here",
+                    text: "note text here"
+                }
+            ]
+        })
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+
+    </script>
+
     <script src="index.js"></script>
 </body>
 

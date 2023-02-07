@@ -18,9 +18,60 @@ class App{
         this.$formText   = document.querySelector("#note-text");
         this.$formButton = document.querySelector("#submit");
         this.$notes = document.querySelector("#notes");
+        this.$app = document.querySelector("#app");
+        this.$firebaseContainer = document.querySelector("#firebaseui-auth-container");
+        this.$authUserName = document.querySelector("#auth-username")
+        this.$logoutBtn = document.querySelector(".logout")
+
+        this.$app.style.display = "none"
+        /* firebase login ui */
+        // Initialize the FirebaseUI Widget using Firebase.
+        this.ui = new firebaseui.auth.AuthUI(auth);
+        this.handleAuth()
 
         this.addEventListeners()
         this.displayNotes()
+    }
+
+    handleAuth(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              var uid = user.uid;
+              this.$authUserName.innerHTML = user.displayName;
+              this.redirectToApp()
+            } else {
+              // User is signed out
+              this.redirectToAuth()
+            }
+          });
+    }
+
+    handleLogout(){
+        firebase.auth().signOut().then(() => {
+            this.redirectToAuth()
+          }).catch((error) => {
+            console.log("Error Occured", error);
+          });
+    }
+
+    redirectToApp(){
+        this.$firebaseContainer.style.display = "none"
+        this.$app.style.display = "block"
+    }
+
+    redirectToAuth(){
+        this.$firebaseContainer.style.display = "block"
+        this.$app.style.display = "none"
+
+        this.ui.start('#firebaseui-auth-container', {
+            signInOptions: [
+              firebase.auth.EmailAuthProvider.PROVIDER_ID,
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID
+            ],
+            // Other config options...
+          });
     }
 
     addNote({ title, text }) {
@@ -59,6 +110,8 @@ class App{
             this.$formTitle.value = "";
             this.$formText.value = "";
         })
+
+        this.$logoutBtn.addEventListener("click", () => this.handleLogout())
     }
 
     expandForm(){
