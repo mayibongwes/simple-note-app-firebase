@@ -51,25 +51,7 @@
 
         const firebaseApp = firebase.initializeApp(firebaseConfig);
         const db = firebaseApp.firestore();
-        const auth = firebaseApp.auth();
-
-        // Add a new document in collection "cities"
-        db.collection("users").doc("signedinuser id").set({
-            notes: [
-                {
-                    id: "123jsd",
-                    title: "title here",
-                    text: "note text here"
-                }
-            ]
-        })
-            .then(() => {
-                console.log("Document successfully written!");
-            })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-
+        const auth = firebaseApp.auth();     
     </script>
 
     <script src="index.js"></script>
